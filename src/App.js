@@ -17,9 +17,6 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <Cards data={data} />
-        <Chart />
-        <CountryPicker />
-        <h1>Olá men</h1>
       </div>
     )
   }
