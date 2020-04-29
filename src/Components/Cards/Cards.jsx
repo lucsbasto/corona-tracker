@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, Typography, Grid } from '@material-ui/core'
 import CountUp from 'react-countup'
 import styles from './Cards.module.css'
+import cx from 'classnames' //for using multiple css class
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   console.log(confirmed, recovered, deaths, lastUpdate)
@@ -11,12 +12,16 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify="center">
-        <Grid item component={Card}>
+        <Grid
+          item
+          component={Card}
+          className={cx(styles.card, styles.infected)}
+        >
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Infected
             </Typography>
-            <Typography variant="h1">
+            <Typography variant="h3">
               <CountUp
                 start={0}
                 end={confirmed.value}
@@ -32,12 +37,17 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid item component={Card}>
+        <Grid
+          item
+          component={Card}
+          className={cx(styles.card, styles.recovered)}
+        >
+          {' '}
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Recovered
             </Typography>
-            <Typography variant="h1">
+            <Typography variant="h3">
               <CountUp
                 start={0}
                 end={recovered.value}
@@ -53,12 +63,13 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid item component={Card}>
+        <Grid item component={Card} className={cx(styles.card, styles.deaths)}>
+          {' '}
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Deaths
             </Typography>
-            <Typography variant="h1">
+            <Typography variant="h3">
               <CountUp
                 start={0}
                 end={deaths.value}
